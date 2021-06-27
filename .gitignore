@@ -1,0 +1,8 @@
+__pycache__/
+data/
+main.py
+main_old.py
+MachineLearningStreamlitBase/main_multiclass.py
+MachineLearningStreamlitBase/main_multimodels.py
+MachineLearningStreamlitBase/train_model.py
+MachineLearningStreamlitBase/feature_list.txt
