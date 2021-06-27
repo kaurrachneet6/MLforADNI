@@ -18,6 +18,7 @@ from MachineLearningStreamlitBase.apps import streamlit_shapley_component
 
 # add any app you like in apps directory
 # from apps import topological_space
+from apps import topological_space, select
 
 app = MultiApp()
 max_width = 4000
@@ -52,4 +53,5 @@ import copy
 st.title('Machine Learning for AD Subtype Prediction') 
 
 app.add_app("SHAP Model Interpretation", streamlit_shapley_component.app)
+app.add_app("Explore the ALS subtype topological space", topological_space.app)
 app.run()
