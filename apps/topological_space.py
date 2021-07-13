@@ -6,20 +6,33 @@ def app():
     st.write("## Topological Space for AD Subtypes using NMF Approach")
     umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m24NMF.csv', sep=',')
     colorable_columns_maps ={
-        'adas__TOTSCORE___m12': 'ADAS MONTH 12 VISIT SCORE',
-        'moca__moca_trail_making___bl': 'MOCA TRAIL MAKING BASELINE VISIT SCORE'
+        'adas__TOTSCORE': 'ADAS TOTAL SCORE',
+        'moca__moca_trail_making': 'MOCA TRAIL MAKING SCORE'
     }
 #     st.write(colorable_columns_maps)
     colorable_columns = list(colorable_columns_maps) 
 #     st.write(colorable_columns)
 #     st.write(set(colorable_columns).intersection(set(list(umap_org_full.columns))))
-    colorable_columns = list(set(colorable_columns).intersection(set(list(umap_org_full.columns))))
-    st.write("### Select a factor to color according to the factor")
+#     colorable_columns = list(set(colorable_columns).intersection(set(list(umap_org_full.columns))))
+    st.write("### Select a feature to color according to the factor")
 #     st.write(colorable_columns)
 #     st.write([colorable_columns_maps[i] for i in colorable_columns])
-    select_color = st.selectbox('', [colorable_columns_maps[i] for i in colorable_columns], index=0)
+    select_feature = st.selectbox('', [colorable_columns_maps[i] for i in colorable_columns], index=0)
+    
+    visit_columns_maps ={
+        'bl': 'BASELINE',
+        'm12': 'MONTH 12'
+    }
+#     st.write(colorable_columns_maps)
+    visit_columns = list(visit_columns_maps) 
+    
+    st.write("### Select the corresponding visit")
+#     st.write(colorable_columns)
+#     st.write([colorable_columns_maps[i] for i in colorable_columns])
+    select_visit = st.selectbox('', [visit_columns_maps[i] for i in visit_columns], index=0)
+    
     umap_org_full = umap_org_full.rename(columns=colorable_columns_maps) 
-    umap_org = umap_org_full[[select_color] + ['NMF_2_1', 'NMF_2_2']].dropna()
+    umap_org = umap_org_full[[select_feature + '__' + select_visit] + ['NMF_2_1', 'NMF_2_2']].dropna()
     color_discrete_map = {}
     color_discrete_map_list = ["red", "green", "blue", "magenta", "yellow", "pink", "grey", "black", "brown", "purple"]
     for e, classname in enumerate(sorted( list(set(umap_org[select_color]).union(set(umap_org[select_color]))) ) ) :
