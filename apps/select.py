@@ -2,7 +2,7 @@ import streamlit as st
 
 def app():
     st.title("Description")
-    st.header("#### This is the website for our paper [Predicting Alzheimer’s disease progression trajectory and clinical subtypes using machine learning](https://www.biorxiv.org/content/10.1101/792432v2)")
+    st.header("[Predicting Alzheimer’s disease progression trajectory and clinical subtypes using machine learning](https://www.biorxiv.org/content/10.1101/792432v2)")
     
     
     st.write("## Summary")
