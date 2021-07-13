@@ -9,14 +9,14 @@ def app():
         'adas__TOTSCORE___m12': 'ADAS MONTH 12 VISIT SCORE',
         'moca__moca_trail_making___bl': 'MOCA TRAIL MAKING BASELINE VISIT SCORE'
     }
-    st.write(colorable_columns_maps)
+#     st.write(colorable_columns_maps)
     colorable_columns = list(colorable_columns_maps) 
-    st.write(colorable_columns)
-    st.write(set(colorable_columns).intersection(set(list(umap_org_full.columns))))
+#     st.write(colorable_columns)
+#     st.write(set(colorable_columns).intersection(set(list(umap_org_full.columns))))
     colorable_columns = list(set(colorable_columns).intersection(set(list(umap_org_full.columns))))
     st.write("### Select a factor to color according to the factor")
-    st.write(colorable_columns)
-    st.write([colorable_columns_maps[i] for i in colorable_columns])
+#     st.write(colorable_columns)
+#     st.write([colorable_columns_maps[i] for i in colorable_columns])
     select_color = st.selectbox('', [colorable_columns_maps[i] for i in colorable_columns], index=0)
     umap_org_full = umap_org_full.rename(columns=colorable_columns_maps) 
     umap_org = umap_org_full[[select_color] + ['NMF_2_1', 'NMF_2_2']].dropna()
