@@ -4,7 +4,14 @@ import plotly.express as px
 
 def app():
     st.write("## Topological Space for AD Subtypes using NMF Approach")
-    umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m24NMF.csv', sep=',')
+    
+    st.write("### Select the ADNI progression space")
+    select_nmf = st.selectbox('', ['At 24th month after baseline', 'At 48th month after baseline'], index=0)
+    
+    if select_nmf == 'At 24th month after baseline':
+        umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m24NMF.csv', sep=',')
+    else:
+        umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m48NMF.csv', sep=',')
     colorable_columns_maps ={
         'adas__TOTSCORE': 'ADAS TOTAL SCORE',
         'moca__moca_trail_making': 'MOCA TRAIL MAKING SCORE',
