@@ -6,7 +6,8 @@ def app():
     st.write("## Topological Space for AD Subtypes using NMF Approach")
     umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m24NMF.csv', sep=',')
     colorable_columns_maps ={
-        'adas__TOTSCORE___m12': 'ADAS M12 SCORE'
+        'adas__TOTSCORE___m12': 'ADAS MONTH 12 VISIT SCORE'
+        'moca_trail_making___bl': 'MOCA TRAIL MAKING BASELINE VISIT SCORE'
     }
     colorable_columns = list(colorable_columns_maps) 
     
