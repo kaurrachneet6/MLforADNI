@@ -9,8 +9,10 @@ def app():
         'adas__TOTSCORE___m12': 'ADAS MONTH 12 VISIT SCORE',
         'moca_trail_making___bl': 'MOCA TRAIL MAKING BASELINE VISIT SCORE'
     }
+    st.write(colorable_columns_maps)
     colorable_columns = list(colorable_columns_maps) 
-    
+    st.write(colorable_columns)
+    st.write(set(colorable_columns).intersection(set(list(umap_org_full.columns))))
     colorable_columns = list(set(colorable_columns).intersection(set(list(umap_org_full.columns))))
     st.write("### Select a factor to color according to the factor")
     st.write(colorable_columns)
