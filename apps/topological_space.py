@@ -34,7 +34,7 @@ def app():
 #     umap_org_full = umap_org_full.rename(columns=colorable_columns_maps) 
     feature_index = list(colorable_columns_maps.keys())[list(colorable_columns_maps.values()).index(select_feature)]
     visit_index = list(visit_columns_maps.keys())[list(visit_columns_maps.values()).index(select_visit)]
-    umap_org = umap_org_full[[feature_index + '___' visit_index] + ['NMF_2_1', 'NMF_2_2']].dropna()
+    umap_org = umap_org_full[[feature_index + '___' + visit_index] + ['NMF_2_1', 'NMF_2_2']].dropna()
     color_discrete_map = {}
     color_discrete_map_list = ["red", "green", "blue", "magenta", "yellow", "pink", "grey", "black", "brown", "purple"]
     for e, classname in enumerate(sorted( list(set(umap_org[select_color]).union(set(umap_org[select_color]))) ) ) :
