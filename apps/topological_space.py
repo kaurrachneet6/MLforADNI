@@ -7,7 +7,7 @@ def app():
     umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m24NMF.csv', sep=',')
     colorable_columns_maps ={
         'adas__TOTSCORE___m12': 'ADAS MONTH 12 VISIT SCORE',
-        'moca_trail_making___bl': 'MOCA TRAIL MAKING BASELINE VISIT SCORE'
+        'moca__moca_trail_making___bl': 'MOCA TRAIL MAKING BASELINE VISIT SCORE'
     }
     st.write(colorable_columns_maps)
     colorable_columns = list(colorable_columns_maps) 
