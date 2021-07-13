@@ -47,9 +47,14 @@ def app():
         'ecogpt_org': 'ECOGPT ORG SCORE',
         'ecogpt_division': 'ECOGPT DIVISION SCORE',
         'cdr__CDMEMORY': 'CDR MEMORY SCORE',
-            
-        
+        'cdr__CDORIENT': 'CDR ORIENT SCORE',
+        'cdr__CDJUDGE': 'CDR JUDGE SCORE',
+        'cdr__CDCOMMUN': 'CDR COMMUN SCORE',
+        'cdr__CDHOME': 'CDR HOME SCORE',
+        'cdr__CDCARE': 'CDR CARE SCORE',
+        'FAQ__FAQTOTAL': 'FAQ TOTAL SCORE'     
     }
+    
 #     st.write(colorable_columns_maps)
     colorable_columns = list(colorable_columns_maps) 
 #     st.write(colorable_columns)
@@ -77,33 +82,36 @@ def app():
     feature_index = list(colorable_columns_maps.keys())[list(colorable_columns_maps.values()).index(select_feature)]
     visit_index = list(visit_columns_maps.keys())[list(visit_columns_maps.values()).index(select_visit)]
     select_color = feature_index + '___' + visit_index
-    umap_org = umap_org_full[[select_color] + ['NMF_2_1', 'NMF_2_2']].dropna()
-    color_discrete_map = {}
-    color_discrete_map_list = ["red", "green", "blue", "magenta", "yellow", "pink", "grey", "black", "brown", "purple"]
-    for e, classname in enumerate(sorted( list(set(umap_org[select_color]).union(set(umap_org[select_color]))) ) ) :
-        color_discrete_map[classname] = color_discrete_map_list[e%10] 
+    try:
+        umap_org = umap_org_full[[select_color] + ['NMF_2_1', 'NMF_2_2']].dropna()
+        color_discrete_map = {}
+        color_discrete_map_list = ["red", "green", "blue", "magenta", "yellow", "pink", "grey", "black", "brown", "purple"]
+        for e, classname in enumerate(sorted( list(set(umap_org[select_color]).union(set(umap_org[select_color]))) ) ) :
+            color_discrete_map[classname] = color_discrete_map_list[e%10] 
 
-    
-    if len(color_discrete_map) < 10:
-            # st.write('### Replication Cohort')
-            fig = px.scatter(umap_org, x='NMF_2_1', y='NMF_2_2', color=select_color, color_discrete_map=color_discrete_map,  opacity=1, height=600, width=600)
-            fig.update_layout(legend=dict(
-                orientation="h",
-                yanchor="bottom",
-                y=1.02,
-                xanchor="right",
-                x=1
+
+        if len(color_discrete_map) < 10:
+                # st.write('### Replication Cohort')
+                fig = px.scatter(umap_org, x='NMF_2_1', y='NMF_2_2', color=select_color, color_discrete_map=color_discrete_map,  opacity=1, height=600, width=600)
+                fig.update_layout(legend=dict(
+                    orientation="h",
+                    yanchor="bottom",
+                    y=1.02,
+                    xanchor="right",
+                    x=1
+                    ))
+                st.plotly_chart(fig, use_container_width=True)
+        else:
+                # st.write('### Replication Cohort')
+                fig = px.scatter(umap_org, x='NMF_2_1', y='NMF_2_2', color=select_color,  opacity=1, height=600, width=600)
+                fig.update_layout(legend=dict(
+                    orientation="h",
+                    yanchor="bottom",
+                    y=1.02,
+                    xanchor="right",
+                    x=1
                 ))
-            st.plotly_chart(fig, use_container_width=True)
-    else:
-            # st.write('### Replication Cohort')
-            fig = px.scatter(umap_org, x='NMF_2_1', y='NMF_2_2', color=select_color,  opacity=1, height=600, width=600)
-            fig.update_layout(legend=dict(
-                orientation="h",
-                yanchor="bottom",
-                y=1.02,
-                xanchor="right",
-                x=1
-            ))
-            st.plotly_chart(fig, use_container_width=True)
-    
+                st.plotly_chart(fig, use_container_width=True)
+    except:
+        st.write("### This feature, visit pair does not exist in our database. Please try a different combination.")
+
