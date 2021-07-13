@@ -13,6 +13,8 @@ def app():
     
     colorable_columns = list(set(colorable_columns).intersection(set(list(umap_org_full.columns))))
     st.write("### Select a factor to color according to the factor")
+    st.write(colorable_columns)
+    st.write([colorable_columns_maps[i] for i in colorable_columns])
     select_color = st.selectbox('', [colorable_columns_maps[i] for i in colorable_columns], index=0)
     umap_org_full = umap_org_full.rename(columns=colorable_columns_maps) 
     umap_org = umap_org_full[[select_color] + ['NMF_2_1', 'NMF_2_2']].dropna()
