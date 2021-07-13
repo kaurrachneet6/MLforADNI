@@ -7,7 +7,15 @@ def app():
     umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m24NMF.csv', sep=',')
     colorable_columns_maps ={
         'adas__TOTSCORE': 'ADAS TOTAL SCORE',
-        'moca__moca_trail_making': 'MOCA TRAIL MAKING SCORE'
+        'moca__moca_trail_making': 'MOCA TRAIL MAKING SCORE',
+        'moca__moca_visuosoconstructional': 'MOCA VISUOSOCONSTRUCTIONAL SCORE',
+        'moca__moca_naming': 'MOCA NAMING SCORE',
+        'moca__moca_attention': 'MOCA ATTENTION SCORE',
+        'moca__moca_immediate_recall': 'MOCA IMMEDIATE RECALL SCORE',
+        'moca__moca_sen_repetetion': 'MOCA SENTENCE REPETETION SCORE',
+        
+        
+        
     }
 #     st.write(colorable_columns_maps)
     colorable_columns = list(colorable_columns_maps) 
@@ -21,6 +29,7 @@ def app():
     
     visit_columns_maps ={
         'bl': 'BASELINE',
+        'm06': 'MONTH 6',
         'm12': 'MONTH 12'
     }
 #     st.write(colorable_columns_maps)
