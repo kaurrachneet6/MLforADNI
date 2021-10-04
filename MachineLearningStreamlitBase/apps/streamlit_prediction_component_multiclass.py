@@ -15,12 +15,12 @@ import joblib
 import xgboost as xgb
 
 feature_mapping = {
-    'neurobat__AVTOT5___m12': "Smoking status",
-    'neurobat__AVTOT6___m06': "Cognitive status 2",    
-    'neurobat__AVTOT6___m12': "El Escorial category at diagnosis",
-    'neurobat__AVDEL30MIN___bl': "Anatomical level at onset",
-    'neurobat__AVDEL30MIN___m06': "Site of symptom onset",
-    'neurobat__AVDEL30MIN___m12': "Onset side",
+    'neurobat__AVTOT5___m12': "Neuropsychological Battery: Total Rey Auditory Verbal Learning Test scores in trial 5 at one year visit",
+    'neurobat__AVTOT6___m06': "Neuropsychological Battery: Total Rey Auditory Verbal Learning Test scores in trial 6 at six month",    
+    'neurobat__AVTOT6___m12': "Neuropsychological Battery: Total Rey Auditory Verbal Learning Test scores in trial 6 at one year",
+    'neurobat__AVDEL30MIN___bl': "Neuropsychological Battery: 30 Minute Delay Total at baseline",
+    'neurobat__AVDEL30MIN___m06': "Neuropsychological Battery: 30 Minute Delay Total at six month",
+    'neurobat__AVDEL30MIN___m12': "Neuropsychological Battery: 30 Minute Delay Total at one year",
     'neurobat__AVDELTOT___m06': "ALSFRS-R part 1 score",
     'neurobat__TRABSCOR___bl': "FVC% at diagnosis",
     'mmse__MMSCORE___m06': "Weight at diagnosis (kg)",
