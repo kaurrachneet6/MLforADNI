@@ -14,7 +14,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 from MachineLearningStreamlitBase.multiapp import MultiApp
-from MachineLearningStreamlitBase.apps import streamlit_shapley_component#, streamlit_prediction_component_multiclass
+from MachineLearningStreamlitBase.apps import streamlit_shapley_component, streamlit_prediction_component_multiclass
 
 # add any app you like in apps directory
 # from apps import topological_space
