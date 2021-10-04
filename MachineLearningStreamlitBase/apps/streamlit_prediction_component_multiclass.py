@@ -80,7 +80,7 @@ def app():
         else:
             numerical_columns.append(col) 
     
-    st.write('### Please enter the following {} factors to perform prediction at the 24th month visit or select a random patient'.format(len(categorical_columns + numerical_columns)))
+    st.write('### Please enter the following {} factors or select a random patient to perform prediction at the 24th month visit'.format(len(categorical_columns + numerical_columns)))
 #     st.write("***Categorical Columns:***") 
 #     st.write(categorical_columns)
 #     st.write("***Numerical Columns:***") 
