@@ -81,8 +81,10 @@ def app():
             numerical_columns.append(col) 
     
     st.write('### Please enter the following {} factors to perform prediction or select a random patient'.format(len(categorical_columns + numerical_columns)))
-    st.write("***Categorical Columns:***", categorical_columns) 
-    st.write("***Numerical Columns:***", numerical_columns) 
+    st.write("***Categorical Columns:***") 
+    st.write(categorical_columns)
+    st.write("***Numerical Columns:***") 
+    st.write(numerical_columns)
     from collections import defaultdict
     if st.button("Random Patient"):
         import random
