@@ -43,16 +43,16 @@ def app():
         """, unsafe_allow_html=True) 
     st.markdown('<div class="boxBorder"><font color="RED">Disclaimer: This predictive tool is only for research purposes</font></div>', unsafe_allow_html=True)
     st.write("## Model Perturbation Analysis")
-    with open('saved_models/trainXGB_class_map.pkl', 'rb') as f:
+    with open('saved_models/RFE_trainXGB_class_map.pkl', 'rb') as f:
         class_names = list(pickle.load(f))
     
     M_dict = {}
     for classname in class_names:
-        M_dict[classname] = joblib.load( 'saved_models/trainXGB_gpu_{}.model'.format(classname) )
+        M_dict[classname] = joblib.load( 'saved_models/RFE_trainXGB_gpu_{}.model'.format(classname) )
     
-    with open('saved_models/trainXGB_gpu_{}.data'.format(class_names[0]), 'rb') as f:
+    with open('saved_models/RFE_trainXGB_gpu_{}.data'.format(class_names[0]), 'rb') as f:
         train = pickle.load(f)
-    with open('saved_models/trainXGB_categorical_map.pkl', 'rb') as f:
+    with open('saved_models/RFE_trainXGB_categorical_map.pkl', 'rb') as f:
         col_dict_map = pickle.load(f)
 
     X = train[1]['X_valid'].copy() 
@@ -205,7 +205,7 @@ def app():
         st.write(f)
         # st.write('#### Trajectory for Predicted Class')
         st.write('#### Model Output Trajectory for {} Class using SHAP values'.format(predicted_class))
-        with open('saved_models/trainXGB_gpu_{}.data'.format(predicted_class), 'rb') as f:
+        with open('saved_models/RFE_trainXGB_gpu_{}.data'.format(predicted_class), 'rb') as f:
             new_train = pickle.load(f)
         exval = new_train[2]['explainer_train'] 
         explainer_train = shap.TreeExplainer(M_dict[predicted_class])
@@ -275,7 +275,7 @@ def app():
             # )  
             # st.plotly_chart(fig)
             st.write('#### Model Output Trajectory for {} Class using SHAP values'.format(predicted_class))
-            with open('saved_models/trainXGB_gpu_{}.data'.format(predicted_class), 'rb') as f:
+            with open('saved_models/RFE_trainXGB_gpu_{}.data'.format(predicted_class), 'rb') as f:
                 new_train = pickle.load(f)
             exval = new_train[2]['explainer_train'] 
             explainer_train = shap.TreeExplainer(M_dict[predicted_class])
