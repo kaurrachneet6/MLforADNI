@@ -53,5 +53,6 @@ import copy
 st.title('Machine Learning for AD Subtype Prediction') 
 app.add_app("Select", select.app)
 app.add_app("SHAP Model Interpretation", streamlit_shapley_component.app)
+app.add_app("Predict Patient ALS Subtype", streamlit_prediction_component_multiclass.app)
 app.add_app("Explore the AD subtype topological space", topological_space.app)
 app.run()
