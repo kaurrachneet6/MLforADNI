@@ -15,26 +15,26 @@ import joblib
 import xgboost as xgb
 
 feature_mapping = {
-    'neurobat__AVTOT5___m12': "Neuropsychological Battery: Total Rey Auditory Verbal Learning Test scores in trial 5 at one year visit",
-    'neurobat__AVTOT6___m06': "Neuropsychological Battery: Total Rey Auditory Verbal Learning Test scores in trial 6 at six month",    
-    'neurobat__AVTOT6___m12': "Neuropsychological Battery: Total Rey Auditory Verbal Learning Test scores in trial 6 at one year",
-    'neurobat__AVDEL30MIN___bl': "Neuropsychological Battery: 30 Minute Delay Total at baseline",
-    'neurobat__AVDEL30MIN___m06': "Neuropsychological Battery: 30 Minute Delay Total at six month",
-    'neurobat__AVDEL30MIN___m12': "Neuropsychological Battery: 30 Minute Delay Total at one year",
-    'neurobat__AVDELTOT___m06': "ALSFRS-R part 1 score",
-    'neurobat__TRABSCOR___bl': "FVC% at diagnosis",
-    'mmse__MMSCORE___m06': "Weight at diagnosis (kg)",
-    'ecogsp___memory_bl': "Rate of BMI decline (per month)",
-    'ecogsp___memory_m06': "Age at symptom onset",
-    'ecogsp___memory_m12': "Time of first ALSFRS-R measurement (days from symptom onset)",
-    'ecogsp___org_m12': "Age at symptom onset",
-    'ecogsp___division_m12': "Age at symptom onset",
-    'ecogpt___vis_m06': "Age at symptom onset",
-    'FAQ__FAQTOTAL___m06': "Age at symptom onset",
-    'FAQ__FAQTOTAL___m12': "Age at symptom onset",
-    'adas__TOTAL13__bl': "Age at symptom onset",
-    'adas__TOTAL13__m06': "Age at symptom onset",
-    'adas__TOTAL13__m12': "Age at symptom onset"
+    'neurobat__AVTOT5___m12': "Neurobattery Total Rey Auditory Verbal Learning Test score in trial 5 at 1 year visit",
+    'neurobat__AVTOT6___m06': "Neurobattery Total Rey Auditory Verbal Learning Test score in trial 6 at 6th month",    
+    'neurobat__AVTOT6___m12': "Neurobattery Total Rey Auditory Verbal Learning Test score in trial 6 at 1 year",
+    'neurobat__AVDEL30MIN___bl': "Neurobattery 30 Minute Delay Total at baseline",
+    'neurobat__AVDEL30MIN___m06': "Neurobattery 30 Minute Delay Total at 6th month",
+    'neurobat__AVDEL30MIN___m12': "Neurobattery 30 Minute Delay Total at 1 year",
+    'neurobat__AVDELTOT___m06': "Neurobattery Recognition Score at 6th month",
+    'neurobat__TRABSCOR___bl': "Neurobattery Trail Making Score at baseline",
+    'mmse__MMSCORE___m06': "Mini-Mental State Examination at 6th month",
+    'ecogsp___memory_bl': "Everyday cognition - study partner memory score at baseline",
+    'ecogsp___memory_m06': "Everyday cognition - study partner memory score at 6th month",
+    'ecogsp___memory_m12': "Everyday cognition - study partner memory score at 1 year",
+    'ecogsp___org_m12': "Everyday cognition - study partner organization score at 1 year",
+    'ecogsp___division_m12': "Everyday cognition - study partner divided attention score at 1 year",
+    'ecogpt___vis_m06': "Everyday cognition - study partner vision score at 6th month",
+    'FAQ__FAQTOTAL___m06': "Functional Activities Questionnaires total score at 6th month",
+    'FAQ__FAQTOTAL___m12': "Functional Activities Questionnaires total score at 1 year",
+    'adas__TOTAL13__bl': "ADAS-Cog total score at baseline",
+    'adas__TOTAL13__m06': "ADAS-Cog total score at 6th month",
+    'adas__TOTAL13__m12': "ADAS-Cog total score at 1 year"
 }
 
 def app():
@@ -80,7 +80,7 @@ def app():
         else:
             numerical_columns.append(col) 
     
-    st.write('### Please enter the following {} factors to perform prediction or select a random patient'.format(len(categorical_columns + numerical_columns)))
+    st.write('### Please enter the following {} factors to perform prediction at the 24th month visit or select a random patient'.format(len(categorical_columns + numerical_columns)))
 #     st.write("***Categorical Columns:***") 
 #     st.write(categorical_columns)
 #     st.write("***Numerical Columns:***") 
