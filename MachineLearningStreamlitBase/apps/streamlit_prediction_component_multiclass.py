@@ -15,18 +15,26 @@ import joblib
 import xgboost as xgb
 
 feature_mapping = {
-    'smoker': "Smoking status",
-    'cognitiveStatus2': "Cognitive status 2",    
-    'elEscorialAtDx': "El Escorial category at diagnosis",
-    'anatomicalLevel_at_onset': "Anatomical level at onset",
-    'site_of_onset': "Site of symptom onset",
-    'onset_side': "Onset side",
-    'ALSFRS1': "ALSFRS-R part 1 score",
-    'FVCPercentAtDx': "FVC% at diagnosis",
-    'weightAtDx_kg': "Weight at diagnosis (kg)",
-    'rateOfDeclineBMI_per_month': "Rate of BMI decline (per month)",
-    'age_at_onset': "Age at symptom onset",
-    'firstALSFRS_daysIntoIllness': "Time of first ALSFRS-R measurement (days from symptom onset)"
+    'neurobat__AVTOT5___m12': "Smoking status",
+    'neurobat__AVTOT6___m06': "Cognitive status 2",    
+    'neurobat__AVTOT6___m12': "El Escorial category at diagnosis",
+    'neurobat__AVDEL30MIN___bl': "Anatomical level at onset",
+    'neurobat__AVDEL30MIN___m06': "Site of symptom onset",
+    'neurobat__AVDEL30MIN___m12': "Onset side",
+    'neurobat__AVDELTOT___m06': "ALSFRS-R part 1 score",
+    'neurobat__TRABSCOR___bl': "FVC% at diagnosis",
+    'mmse__MMSCORE___m06': "Weight at diagnosis (kg)",
+    'ecogsp___memory_bl': "Rate of BMI decline (per month)",
+    'ecogsp___memory_m06': "Age at symptom onset",
+    'ecogsp___memory_m12': "Time of first ALSFRS-R measurement (days from symptom onset)",
+    'ecogsp___org_m12': "Age at symptom onset",
+    'ecogsp___division_m12': "Age at symptom onset",
+    'ecogpt___vis_m06': "Age at symptom onset",
+    'FAQ__FAQTOTAL___m06': "Age at symptom onset",
+    'FAQ__FAQTOTAL___m12': "Age at symptom onset",
+    'adas__TOTAL13__bl': "Age at symptom onset",
+    'adas__TOTAL13__m06': "Age at symptom onset",
+    'adas__TOTAL13__m12': "Age at symptom onset"
 }
 
 def app():
