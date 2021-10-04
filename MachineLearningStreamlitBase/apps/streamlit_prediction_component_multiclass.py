@@ -81,10 +81,10 @@ def app():
             numerical_columns.append(col) 
     
     st.write('### Please enter the following {} factors to perform prediction or select a random patient'.format(len(categorical_columns + numerical_columns)))
-    st.write("***Categorical Columns:***") 
-    st.write(categorical_columns)
-    st.write("***Numerical Columns:***") 
-    st.write(numerical_columns)
+#     st.write("***Categorical Columns:***") 
+#     st.write(categorical_columns)
+#     st.write("***Numerical Columns:***") 
+#     st.write(numerical_columns)
     from collections import defaultdict
     if st.button("Random Patient"):
         import random
@@ -132,8 +132,8 @@ def app():
             new_feature_input[c4].append(col_dict_map[c4].get(f4, np.nan))
     
     for col in numerical_columns:
-        st.write(X_new)
-        st.write(col)
+#         st.write(X_new)
+#         st.write(col)
         X_new[col] = X_new[col].map(lambda x: float(x) if not x=='X' else np.nan)
     for i in range(0, len(numerical_columns), 4):
         with col1:
