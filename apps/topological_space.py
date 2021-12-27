@@ -26,7 +26,18 @@ def app():
         
     else:
         umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m48NMF.csv', sep=',')
-        img_columns = {}
+        img_columns = {'left amygdala_vol_dktregions': "Left Amygdala Vol",
+        'right amygdala_vol_dktregions': "Right Amygdala Vol",
+        'left amygdala_area_dktregions': "Left Amygdala Area",
+        'right amygdala_area_dktregions': "Right Amygdala Area",
+        'left entorhinal_vol_dktcortex': "Left Entorhinal Vol",
+        'right entorhinal_vol_dktcortex': "Right Entorhinal Vol",
+        'left entorhinal_area_dktcortex': "Left Entorhinal Area",
+        'right entorhinal_area_dktcortex': "Right Entorhinal Area",
+        'left parahippocampal_vol_dktcortex': "Left Parahippocampal Vol",
+        'right parahippocampal_vol_dktcortex': "Right Parahippocampal Vol",
+        'left parahippocampal_area_dktcortex': "Left Parahippocampal Area",
+        'right parahippocampal_area_dktcortex': "Right Parahippocampal Area",}
     colorable_columns_maps ={
         'adas__TOTSCORE': 'ADAS TOTAL SCORE',
         'moca__moca_trail_making': 'MOCA TRAIL MAKING SCORE',
