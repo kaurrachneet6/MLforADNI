@@ -25,7 +25,7 @@ def app():
         'right parahippocampal_area_dktcortex': "Right Parahippocampal Area",}
         
     else:
-        umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m48NMF.csv', sep=',')
+        umap_org_full = pd.read_csv('saved_models/bl_m6_m12_include_imaging_features_m48NMF.csv', sep=',')
         img_columns = {'left amygdala_vol_dktregions': "Left Amygdala Vol",
         'right amygdala_vol_dktregions': "Right Amygdala Vol",
         'left amygdala_area_dktregions': "Left Amygdala Area",
