@@ -9,9 +9,24 @@ def app():
     select_nmf = st.selectbox('', ['At 24th month after baseline', 'At 48th month after baseline'], index=0)
     
     if select_nmf == 'At 24th month after baseline':
-        umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m24NMF.csv', sep=',')
+        # umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m24NMF.csv', sep=',')
+        umap_org_full = pd.read_csv('saved_models/bl_m6_m12_include_imaging_features_m24NMF.csv', sep=',')
+        img_columns = {'left amygdala_vol_dktregions': "Left Amygdala Vol",
+        'right amygdala_vol_dktregions': "Right Amygdala Vol",
+        'left amygdala_area_dktregions': "Left Amygdala Area",
+        'right amygdala_area_dktregions': "Right Amygdala Area",
+        'left entorhinal_vol_dktcortex': "Left Entorhinal Vol",
+        'right entorhinal_vol_dktcortex': "Right Entorhinal Vol",
+        'left entorhinal_area_dktcortex': "Left Entorhinal Area",
+        'right entorhinal_area_dktcortex': "Right Entorhinal Area",
+        'left parahippocampal_vol_dktcortex': "Left Parahippocampal Vol",
+        'right parahippocampal_vol_dktcortex': "Right Parahippocampal Vol",
+        'left parahippocampal_area_dktcortex': "Left Parahippocampal Area",
+        'right parahippocampal_area_dktcortex': "Right Parahippocampal Area",}
+        
     else:
         umap_org_full = pd.read_csv('saved_models/bl_m6_m12_features_m48NMF.csv', sep=',')
+        img_columns = {}
     colorable_columns_maps ={
         'adas__TOTSCORE': 'ADAS TOTAL SCORE',
         'moca__moca_trail_making': 'MOCA TRAIL MAKING SCORE',
@@ -59,8 +74,12 @@ def app():
         'cdr__CDCOMMUN': 'CDR COMMUN SCORE',
         'cdr__CDHOME': 'CDR HOME SCORE',
         'cdr__CDCARE': 'CDR CARE SCORE',
-        'FAQ__FAQTOTAL': 'FAQ TOTAL SCORE'     
+        'FAQ__FAQTOTAL': 'FAQ TOTAL SCORE',
+        
     }
+    colorable_columns_maps.update(img_columns)
+    
+    
     
 #     st.write(colorable_columns_maps)
     colorable_columns = list(colorable_columns_maps) 
