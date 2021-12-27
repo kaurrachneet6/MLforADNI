@@ -105,7 +105,9 @@ def app():
     visit_columns_maps ={
         'bl': 'BASELINE',
         'm06': 'MONTH 6',
-        'm12': 'MONTH 12'
+        'm12': 'MONTH 12',
+        'm24': 'MONTH 24'
+        'm48': 'MONTH 48'
     }
 #     st.write(colorable_columns_maps)
     visit_columns = list(visit_columns_maps) 
