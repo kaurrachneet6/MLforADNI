@@ -106,7 +106,7 @@ def app():
         'bl': 'BASELINE',
         'm06': 'MONTH 6',
         'm12': 'MONTH 12',
-        'm24': 'MONTH 24'
+        'm24': 'MONTH 24',
         'm48': 'MONTH 48'
     }
 #     st.write(colorable_columns_maps)
