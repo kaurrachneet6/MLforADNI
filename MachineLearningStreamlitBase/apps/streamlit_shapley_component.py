@@ -137,25 +137,25 @@ def app():
             st.pyplot(fig)
             st.write('---')
     
-    st.write('## Dependence Plots')
-    st.write("""We can observe the interaction effects of different features in for predictions. To help reveal these interactions dependence_plot automatically lists (top-3) potential features for coloring. 
-    Furthermore, we can observe the relationship betweem features and SHAP values for prediction using the dependence plots, which compares the actual feature value (x-axis) against the SHAP score (y-axis). 
-    It shows that the effect of feature values is not a simple relationship where increase in the feature value leads to consistent changes in model output but a complicated non-linear relationship.""")
-    if st.checkbox("Show Dependence Plots"):
-        feature_name = st.selectbox('Select a feature for dependence plot', options=list(X.columns))
-        inds = shap.utils.potential_interactions(shap.Explanation(values=np.copy(shap_values), base_values=np.array([exval]*len(X)), data=np.copy(X.values), feature_names=X.columns)[:, feature_name], shap.Explanation(values=np.copy(shap_values), base_values=np.array([exval]*len(X)), data=np.copy(X.values), feature_names=X.columns))
-    
-        st.write('Top3 Potential Interactions for ***{}***'.format(feature_name))
-        col3, col4, col5 = st.beta_columns(3)
-        with col3:
-            shap.dependence_plot(feature_name, np.copy(shap_values), X.copy(), interaction_index=list(X.columns).index(list(X.columns)[inds[0]]))
-            st.pyplot()
-        with col4:
-            shap.dependence_plot(feature_name, np.copy(shap_values), X.copy(), interaction_index=list(X.columns).index(list(X.columns)[inds[1]]))
-            st.pyplot()
-        with col5:
-            shap.dependence_plot(feature_name, np.copy(shap_values), X.copy(), interaction_index=list(X.columns).index(list(X.columns)[inds[2]]))
-            st.pyplot()
+    # st.write('## Dependence Plots')
+    # st.write("""We can observe the interaction effects of different features in for predictions. To help reveal these interactions dependence_plot automatically lists (top-3) potential features for coloring.
+    # Furthermore, we can observe the relationship betweem features and SHAP values for prediction using the dependence plots, which compares the actual feature value (x-axis) against the SHAP score (y-axis).
+    # It shows that the effect of feature values is not a simple relationship where increase in the feature value leads to consistent changes in model output but a complicated non-linear relationship.""")
+    # if st.checkbox("Show Dependence Plots"):
+    #     feature_name = st.selectbox('Select a feature for dependence plot', options=list(X.columns))
+    #     inds = shap.utils.potential_interactions(shap.Explanation(values=np.copy(shap_values), base_values=np.array([exval]*len(X)), data=np.copy(X.values), feature_names=X.columns)[:, feature_name], shap.Explanation(values=np.copy(shap_values), base_values=np.array([exval]*len(X)), data=np.copy(X.values), feature_names=X.columns))
+    #
+    #     st.write('Top3 Potential Interactions for ***{}***'.format(feature_name))
+    #     col3, col4, col5 = st.beta_columns(3)
+    #     with col3:
+    #         shap.dependence_plot(feature_name, np.copy(shap_values), X.copy(), interaction_index=list(X.columns).index(list(X.columns)[inds[0]]))
+    #         st.pyplot()
+    #     with col4:
+    #         shap.dependence_plot(feature_name, np.copy(shap_values), X.copy(), interaction_index=list(X.columns).index(list(X.columns)[inds[1]]))
+    #         st.pyplot()
+    #     with col5:
+    #         shap.dependence_plot(feature_name, np.copy(shap_values), X.copy(), interaction_index=list(X.columns).index(list(X.columns)[inds[2]]))
+    #         st.pyplot()
 
     labels_actual_new = np.array(labels_actual, dtype=np.float64)
     y_pred = (shap_values.sum(1) + exval) > 0
