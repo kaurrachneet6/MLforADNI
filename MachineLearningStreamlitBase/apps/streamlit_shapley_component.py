@@ -13,13 +13,24 @@ import matplotlib.pyplot as plt
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 def app():
-    with open('saved_models/trainXGB_class_map.pkl', 'rb') as f:
-        class_names = list(pickle.load(f))
+    @st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
+    def load_model1():
+        with open('saved_models/trainXGB_class_map.pkl', 'rb') as f:
+            class_names = list(pickle.load(f))
+        return class_names
 
-    st.write("## SHAP Model Interpretation") 
-    with open('saved_models/trainXGB_gpu.aucs', 'rb') as f:
-        result_aucs = pickle.load(f)
-    
+    class_names = load_model1()
+
+    st.write("## SHAP Model Interpretation")
+
+    @st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
+    def load_model2():
+        with open('saved_models/trainXGB_gpu.aucs', 'rb') as f:
+            result_aucs = pickle.load(f)
+        return  result_aucs
+
+    result_aucs = load_model2()
+
     if len(result_aucs[class_names[0]]) == 3:
         df_res = pd.DataFrame({'class name': class_names, 'Train AUC': ["{:.2f}".format(result_aucs[i][0]) for i in class_names], 'Test AUC (Replication)':  ["{:.2f}".format(result_aucs[i][1]) for i in class_names]})
         replication_avail = True
@@ -27,7 +38,7 @@ def app():
         df_res = pd.DataFrame({'class name': class_names, 'Train AUC': ["{:.2f}".format(result_aucs[i][0]) for i in class_names], 'Test AUC':  ["{:.2f}".format(result_aucs[i][1]) for i in class_names]})
         replication_avail = False
     
-    @st.cache(allow_output_mutation=True)
+    @st.cache(allow_output_mutation=True, ttl=24*3600)
     def get_shapley_value_data(train, replication=True, dict_map_result={}):
         dataset_type = '' 
         shap_values = np.concatenate([train[0]['shap_values_train'], train[0]['shap_values_test']], axis=0)
@@ -67,8 +78,13 @@ def app():
     
     st.markdown('<div class="boxBorder1"><font color="black">Select the disease (positive class)</font></div>', unsafe_allow_html=True)
     feature_set_my = st.radio( "", class_names, index=0)
-    with open('saved_models/trainXGB_gpu_{}.data'.format(feature_set_my), 'rb') as f:
-        train = pickle.load(f)
+
+    @st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
+    def load_model3():
+        with open('saved_models/trainXGB_gpu_{}.data'.format(feature_set_my), 'rb') as f:
+            train = pickle.load(f)
+        return train
+    train = load_model3()
     st.write('---')
     st.markdown('<div class="boxBorder1"><font color="black">Showing Analysis for {}</font></div>'.format(feature_set_my), unsafe_allow_html=True) 
     st.write('---')

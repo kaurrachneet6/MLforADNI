@@ -51,17 +51,33 @@ def app():
         """, unsafe_allow_html=True) 
     st.markdown('<div class="boxBorder"><font color="RED">Disclaimer: This predictive tool is only for research purposes</font></div>', unsafe_allow_html=True)
     st.write("## Model Perturbation Analysis")
-    with open('saved_models/RFE_trainXGB_class_map.pkl', 'rb') as f:
-        class_names = list(pickle.load(f))
-    
-    M_dict = {}
-    for classname in class_names:
-        M_dict[classname] = joblib.load( 'saved_models/RFE_trainXGB_gpu_{}.model'.format(classname) )
-    
-    with open('saved_models/RFE_trainXGB_gpu_{}.data'.format(class_names[0]), 'rb') as f:
-        train = pickle.load(f)
-    with open('saved_models/RFE_trainXGB_categorical_map.pkl', 'rb') as f:
-        col_dict_map = pickle.load(f)
+
+    @st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
+    def load_model2():
+        with open('saved_models/RFE_trainXGB_class_map.pkl', 'rb') as f:
+            class_names = list(pickle.load(f))
+        return class_names
+
+    class_names = load_model2()
+
+    @st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
+    def load_model():
+        M_dict = {}
+        for classname in class_names:
+            M_dict[classname] = joblib.load( 'saved_models/RFE_trainXGB_gpu_{}.model'.format(classname) )
+        return M_dict
+
+    M_dict = load_model()
+
+    @st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
+    def load_model1():
+        with open('saved_models/RFE_trainXGB_gpu_{}.data'.format(class_names[0]), 'rb') as f:
+            train = pickle.load(f)
+        with open('saved_models/RFE_trainXGB_categorical_map.pkl', 'rb') as f:
+            col_dict_map = pickle.load(f)
+        return train, col_dict_map
+
+    train, col_dict_map = load_model1()
 
     X = train[1]['X_valid'].copy() 
     ids = list(train[3]['ID_test'])
