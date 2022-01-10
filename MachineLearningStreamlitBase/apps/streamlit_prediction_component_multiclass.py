@@ -60,7 +60,7 @@ def app():
 
     class_names = load_model2()
 
-    @st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
+    # @st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
     def load_model():
         M_dict = {}
         for classname in class_names:
