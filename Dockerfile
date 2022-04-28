@@ -15,7 +15,7 @@ COPY requirements.txt app/requirements.txt
 
 RUN pip install plotly==4.14.3
 RUN pip install pandas==1.2.3
-RUN pip install streamlit==0.78.0
+RUN pip install streamlit==1.1.0
 RUN pip install omegaconf==2.0.6
 RUN pip install numpy==1.20.1
 RUN pip install altair==4.1.0
